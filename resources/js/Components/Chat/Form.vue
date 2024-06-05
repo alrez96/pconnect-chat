@@ -15,7 +15,7 @@ const form = useForm({
         <div class="flex-none">
             <form class="flex"
                 @submit.prevent="form.post(route('chatroom.store', $page.props.chat_id), { onSuccess: () => form.reset() })">
-                <input class="px-2 py-1 mx-2 my-1 bg-white border-none rounded-lg grow min-w-32"
+                <input id="formMessage" class="px-2 py-1 mx-2 my-1 bg-white border-none rounded-lg grow min-w-32"
                     v-model="form.message" />
                 <div class="flex-none w-10 p-1">
                     <button

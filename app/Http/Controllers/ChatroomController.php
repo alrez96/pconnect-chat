@@ -6,6 +6,7 @@ use App\Models\Message;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
+use App\Events\MessageCreated;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -51,6 +52,8 @@ class ChatroomController extends Controller
             'to_id' => $id,
             'message' => $request->message,
         ]);
+
+        broadcast(new MessageCreated($message))->toOthers();
 
         return redirect()->back();
     }
