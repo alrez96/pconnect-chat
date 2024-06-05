@@ -6,7 +6,7 @@ defineProps({ message: Object });
 
 <template>
     <div v-if="$page.props.auth.user.id == message.from_id" class="flex flex-row-reverse">
-        <div class="flex p-1 rounded-md bg-lime-50 gap-x-1.5">
+        <div class="flex p-1 rounded-md bg-lime-50 gap-x-1.5 shadow-sm">
             <div class="text-sm">
                 {{ message.message }}
             </div>
@@ -16,7 +16,7 @@ defineProps({ message: Object });
         </div>
     </div>
     <div v-else class="flex">
-        <div class="flex p-1 rounded-md bg-cyan-50 gap-x-1.5">
+        <div class="flex p-1 rounded-md bg-cyan-50 gap-x-1.5 shadow-sm">
             <div class="text-sm">
                 {{ message.message }}
             </div>

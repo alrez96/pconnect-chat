@@ -3,7 +3,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import Contact from '@/Components/Chat/Contact.vue';
 import Form from '@/Components/Chat/Form.vue';
 import { Head, Link, usePage, router } from '@inertiajs/vue3';
-import { onMounted, onUnmounted } from 'vue'
+import { onMounted } from 'vue'
 
 const props = defineProps({
     contacts: {
@@ -18,13 +18,9 @@ onMounted(() => {
     Echo.private(`messages.${usePage().props.auth.user.id}`)
         .listen('MessageCreated', (e) => {
             if (usePage().props.chat_id && e.message.from_id == usePage().props.chat_id) {
-                router.reload();
+                router.reload({ only: ['messages'] })
             }
         });
-})
-
-onUnmounted(() => {
-    Echo.leave(`messages.${usePage().props.auth.user.id}`);
 });
 </script>
 
