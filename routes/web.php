@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\ChatroomController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +34,6 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 
-    Route::get('/chatroom', function () {
-        return Inertia::render('Chatroom');
-    })->name('chatroom');
+    Route::get('/chatroom', [ChatroomController::class, 'index'])
+        ->name('chatroom');
 });
