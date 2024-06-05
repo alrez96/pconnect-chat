@@ -39,4 +39,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/chatroom/{chat}', [ChatroomController::class, 'show'])
         ->name('chatroom.show');
+
+    Route::post('/chatroom/{chat}', [ChatroomController::class, 'store'])
+        ->name('chatroom.store');
 });

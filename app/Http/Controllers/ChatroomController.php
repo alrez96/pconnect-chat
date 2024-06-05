@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -31,5 +32,18 @@ class ChatroomController extends Controller
             'chat_id' => (int) $id,
             'messages' => 'Messages',
         ]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request, string $id)
+    {
+        $message = Auth::user()->messages()->create([
+            'to_id' => $id,
+            'message' => $request->message,
+        ]);
+
+        return redirect()->back();
     }
 }
