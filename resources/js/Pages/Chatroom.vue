@@ -1,9 +1,17 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import Contact from '@/Components/Chat/Contact.vue';
+import Form from '@/Components/Chat/Form.vue';
 import { Head, Link } from '@inertiajs/vue3';
 
-defineProps({ contacts: Object });
+const props = defineProps({
+    contacts: {
+        type: Object,
+    },
+    chat_id: {
+        type: Number,
+    },
+});
 </script>
 
 <template>
@@ -27,8 +35,8 @@ defineProps({ contacts: Object });
                             </Link>
                         </div>
                     </div>
-                    <div class="w-4/6 p-2">
-                        <!-- messages -->
+                    <div class="w-4/6">
+                        <Form v-if="chat_id" />
                     </div>
                 </div>
             </div>
