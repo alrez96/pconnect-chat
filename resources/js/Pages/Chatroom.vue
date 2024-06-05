@@ -1,6 +1,9 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import Contact from '@/Components/Chat/Contact.vue';
 import { Head, Link } from '@inertiajs/vue3';
+
+defineProps({ contacts: Object });
 </script>
 
 <template>
@@ -14,7 +17,7 @@ import { Head, Link } from '@inertiajs/vue3';
                     <div class="flex flex-col w-2/6 border-r-2 border-gray-200">
                         <div class="flex-1 overflow-y-auto border-b-2 border-gray-200">
                             <div class="flex flex-col divide-y">
-                                <!-- contacts -->
+                                <Contact v-for="contact in contacts" :key="contact.id" :contact="contact" />
                             </div>
                         </div>
                         <div class="flex-none h-8">
