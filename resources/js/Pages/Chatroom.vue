@@ -17,7 +17,9 @@ const props = defineProps({
 onMounted(() => {
     Echo.private(`messages.${usePage().props.auth.user.id}`)
         .listen('MessageCreated', (e) => {
-            router.reload();
+            if (usePage().props.chat_id && e.message.from_id == usePage().props.chat_id) {
+                router.reload();
+            }
         });
 })
 
