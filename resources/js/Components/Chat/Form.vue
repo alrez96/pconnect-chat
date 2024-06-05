@@ -1,4 +1,5 @@
 <script setup>
+import Message from '@/Components/Chat/Message.vue';
 import { useForm } from '@inertiajs/vue3';
 
 const form = useForm({
@@ -8,8 +9,8 @@ const form = useForm({
 
 <template>
     <div class="flex flex-col h-full bg-slate-200">
-        <div class="flex-1">
-            <!-- messages -->
+        <div class="flex flex-col-reverse flex-1 p-2 overflow-auto gap-y-1">
+            <Message v-for="message in $page.props.messages" :key="message.id" :message="message" />
         </div>
         <div class="flex-none">
             <form class="flex"

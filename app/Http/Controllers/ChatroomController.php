@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -30,7 +32,13 @@ class ChatroomController extends Controller
             'contacts' => User::where('id', '!=', Auth::user()->id)->select('id', 'name')
                 ->get(),
             'chat_id' => (int) $id,
-            'messages' => 'Messages',
+            'messages' => Message::where(function (Builder $query) use ($id) {
+                $query->where('from_id', Auth::user()->id)
+                    ->where('to_id', $id);
+            })->orWhere(function (Builder $query) use ($id) {
+                $query->where('to_id', Auth::user()->id)
+                    ->where('from_id', $id);
+            })->latest()->get()
         ]);
     }
 
