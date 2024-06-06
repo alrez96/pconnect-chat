@@ -4,7 +4,7 @@ import InputLabel from '@/Components/Auth/InputLabel.vue';
 import TextInput from '@/Components/Auth/TextInput.vue';
 import InputError from '@/Components/Auth/InputError.vue';
 import PrimaryButton from '@/Components/Auth/PrimaryButton.vue';
-import { Head, useForm } from '@inertiajs/vue3';
+import { Head, useForm, Link } from '@inertiajs/vue3';
 
 const form = useForm({
     email: '',
@@ -43,6 +43,11 @@ const submit = () => {
             </div>
 
             <div class="flex items-center justify-end mt-4">
+                <Link :href="route('register')"
+                    class="text-sm text-gray-600 underline rounded-md hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                Not registered?
+                </Link>
+
                 <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Log in
                 </PrimaryButton>

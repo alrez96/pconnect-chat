@@ -21,3 +21,7 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
 Broadcast::channel('messages.{toId}', function (User $user, int $toId) {
     return (int) $user->id === $toId;
 });
+
+Broadcast::channel('user.events', function ($user) {
+    return true;
+});
