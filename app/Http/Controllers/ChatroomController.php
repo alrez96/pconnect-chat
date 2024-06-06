@@ -48,13 +48,17 @@ class ChatroomController extends Controller
      */
     public function store(Request $request, string $id)
     {
+        $validated = $request->validate([
+            'message' => 'required|string',
+        ]);
+
         $message = Auth::user()->messages()->create([
             'to_id' => $id,
-            'message' => $request->message,
+            'message' => $validated['message'],
         ]);
 
         broadcast(new MessageCreated($message))->toOthers();
 
-        return redirect()->back();
+        return redirect(route('chatroom.show', $id));
     }
 }
