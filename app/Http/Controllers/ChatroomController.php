@@ -59,6 +59,6 @@ class ChatroomController extends Controller
 
         broadcast(new MessageCreated($message))->toOthers();
 
-        return redirect()->back();
+        return redirect(route('chatroom.show', $id));
     }
 }
