@@ -47,6 +47,12 @@ onMounted(() => {
                     </div>
                     <div class="w-4/6">
                         <Form v-if="chat_id" />
+
+                        <div v-else class="flex items-center justify-center w-full h-full p-2 text-xs">
+                            <div class="px-2 py-1 bg-gray-100 rounded-lg">
+                                Select a chat to start messaging
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
