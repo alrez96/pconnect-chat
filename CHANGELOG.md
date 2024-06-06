@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0] - 2024-06-06
+
+### Added
+
+- Add user register event broadcasting
+
 ## [1.2.0] - 2024-06-06
 
 ### Fixed
