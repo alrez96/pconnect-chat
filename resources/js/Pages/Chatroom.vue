@@ -18,8 +18,13 @@ onMounted(() => {
     Echo.private(`messages.${usePage().props.auth.user.id}`)
         .listen('MessageCreated', (e) => {
             if (usePage().props.chat_id && e.message.from_id == usePage().props.chat_id) {
-                router.reload({ only: ['messages'] })
+                router.reload({ only: ['messages'] });
             }
+        });
+
+    Echo.private(`user.events`)
+        .listen('UserRegistered', (e) => {
+            router.reload({ only: ['contacts'] });
         });
 });
 </script>

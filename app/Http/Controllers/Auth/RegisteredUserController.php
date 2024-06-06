@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use App\Events\UserRegistered;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -43,6 +44,8 @@ class RegisteredUserController extends Controller
         ]);
 
         Auth::login($user);
+
+        broadcast(new UserRegistered($user))->toOthers();
 
         return redirect(RouteServiceProvider::HOME);
     }
